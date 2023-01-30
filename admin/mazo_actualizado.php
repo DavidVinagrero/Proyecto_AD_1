@@ -16,8 +16,11 @@
                 if($accionRecuperada == "crear"){
                     $descripcionRecuperada = $_POST["descripcion"];
                     insertarMazo($myconection, $nombreRecuperado, $descripcionRecuperada);
-                } else{
+                } elseif($accionRecuperada == "borrar"){
                     eliminarMazo($myconection, $nombreRecuperado);
+                } else{
+                    $descripcionRecuperada = $_POST["descripcion"];
+                    modificarMazo($myconection, $nombreRecuperado, $descripcionRecuperada);
                 }
             } else{
                 echo "No has puesto nombre en el mazo";
