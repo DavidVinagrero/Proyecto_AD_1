@@ -1,9 +1,9 @@
 <html>
     <head>
         <title>Eliminar carta</title>
-        <link rel = "StyleSheet" href = "estilos.css" type = "text/css">
+        <link rel = "StyleSheet" href = "../estilos.css" type = "text/css">
         <?php 
-            require_once("dbutils.php");
+            require_once("../dbutils.php");
             $myconection = conectarDB();
 
             $listaCartasBruto = seleccionarCartas($myconection);

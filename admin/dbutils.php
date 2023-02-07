@@ -15,7 +15,7 @@ function insertarMazo($conDb, $nombre, $descripcion){
     try {
         $db = new PDO("mysql:host=localhost;dbname=time_line;charset=utf8mb4", "root", "");
         $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-        $sql = "INSERT INTO `mazos` (`ID`, `NOMBRE`, `DESCRIPCION`) VALUES (NULL, '$nombre', '$descripcion')";
+        $sql = "INSERT INTO  mazos  ( ID ,  NOMBRE ,  DESCRIPCION ) VALUES (NULL, '$nombre', '$descripcion')";
         $db->exec($sql);
         echo "<h1>Mazo creado satisfactoriamente</h1>";
         }
@@ -26,7 +26,6 @@ function insertarMazo($conDb, $nombre, $descripcion){
     
     $conDb = null;
 }
-
 function eliminarMazo($conDb, $nombre){
     try {
         $db = new PDO("mysql:host=localhost;dbname=time_line;charset=utf8mb4", "root", "");
@@ -42,12 +41,11 @@ function eliminarMazo($conDb, $nombre){
     
     $conDb = null;
 }
-
 function insertarCarta($conDb, $descripcion, $fecha, $mazo, $imagen){
     try {
         $db = new PDO("mysql:host=localhost;dbname=time_line;charset=utf8mb4", "root", "");
         $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-        $sql = "INSERT INTO `cartas` (`ID`, `DESCRIPCION`, `ANIO`, `IMAGEN`, `NOMBRE_MAZO`) VALUES (NULL, '$descripcion', '$fecha', '$imagen', '$mazo');";
+        $sql = "INSERT INTO  cartas  ( ID ,  DESCRIPCION ,  ANIO ,  IMAGEN ,  NOMBRE_MAZO ) VALUES (NULL, '$descripcion', '$fecha', '$imagen', '$mazo');";
         $db->exec($sql);
         echo "<h1>Carta creada satisfactoriamente</h1>";
         }
@@ -79,7 +77,24 @@ function seleccionarCartas($conDb){
     $vectorTotal = array();
     try
     {
-        $sql = "SELECT ID, ANIO, DESCRIPCION FROM CARTAS";
+        $sql = "SELECT ID, ANIO, DESCRIPCION, IMAGEN, NOMBRE_MAZO FROM CARTAS";
+        $stmt = $conDb->query($sql);
+        while($fila = $stmt->fetch(PDO::FETCH_ASSOC))
+        {
+        $vectorTotal[]=$fila;
+        }
+    }
+    catch (PDOException $ex)
+    {
+        echo ("Error al conectar".$ex->getMessage());
+    }
+    return $vectorTotal;
+}
+function seleccionarCartasID($conDb, $id){
+    $vectorTotal = array();
+    try
+    {
+        $sql = "SELECT IMAGEN, DESCRIPCION, ANIO FROM CARTAS WHERE ID = $id";
         $stmt = $conDb->query($sql);
         while($fila = $stmt->fetch(PDO::FETCH_ASSOC))
         {
@@ -120,5 +135,53 @@ function modificarMazo($conDb, $nombre, $descripcionNueva){
         echo $sql . "<br>" . $e->getMessage();
         }
 
+    $conDb = null;
+}
+function modificarCarta($conDb, $id, $descripcionNueva, $fechaNueva, $imagenNueva, $nombreMazo){
+    try {
+        $db = new PDO("mysql:host=localhost;dbname=time_line;charset=utf8mb4", "root", "");
+        $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+        $sql = "UPDATE  cartas  SET  DESCRIPCION  = '$descripcionNueva',  ANIO  = '$fechaNueva',  IMAGEN  = '$imagenNueva',
+                NOMBRE_MAZO  = '$nombreMazo' WHERE ID  = $id;";
+        $db->exec($sql);
+        echo "<h1>Carta modificada correctamente</h1>";
+        }
+    catch(PDOException $e)
+        {
+        echo $sql . "<br>" . $e->getMessage();
+        }
+
+    $conDb = null;
+}
+function seleccionarPuntuaciones($conDb){
+    $vectorTotal = array();
+    try
+    {
+        $sql = "SELECT NOMBRE, PUNTOS FROM PUNTUACIONES ORDER BY PUNTOS DESC";
+        $stmt = $conDb->query($sql);
+        while($fila = $stmt->fetch(PDO::FETCH_ASSOC))
+        {
+        $vectorTotal[]=$fila;
+        }
+    }
+    catch (PDOException $ex)
+    {
+        echo ("Error al conectar".$ex->getMessage());
+    }
+    return $vectorTotal;
+}
+function insertarPuntuacion($conDb, $nombre, $puntos){
+    try {
+        $db = new PDO("mysql:host=localhost;dbname=time_line;charset=utf8mb4", "root", "");
+        $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+        $sql = "    INSERT INTO  puntuaciones  ( ID ,  NOMBRE ,  PUNTOS ) VALUES (NULL, '$nombre', '$puntos');";
+        $db->exec($sql);
+        echo "<h1>Puntuacion añadida 👍</h1>";
+        }
+    catch(PDOException $e)
+        {
+        echo $sql . "<br>" . $e->getMessage();
+        }
+    
     $conDb = null;
 }

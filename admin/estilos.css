@@ -62,3 +62,37 @@ a{
   text-decoration: none;
   color: #fff;
 }
+
+table{
+  border: 1px solid black;
+  text-align: center;
+  width: 40%;
+  font-size: 150%;
+}
+
+tr, td{
+  border: 1px solid black;
+  font-size: 120%;
+}
+
+.nombre_input{
+  width: 15%;
+  height: 10%;
+  background-color: #8594e4;
+  border-radius: 7px;
+  text-align: center;
+  font-size: 40px;
+  text-transform:uppercase;
+}
+
+.puntos_input{
+  width: 5%;
+  height: 6%;
+  font-size: 100%;
+  text-align: center;
+}
+
+@font-face {
+  font-family: "PressStart";
+  src: url("media/font/PressStart2P-Regular.ttf") format("truetype");
+}

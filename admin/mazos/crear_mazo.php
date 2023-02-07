@@ -1,6 +1,6 @@
 <htm>
     <head>
-        <link rel = "StyleSheet" href = "estilos.css" type = "text/css">
+        <link rel = "StyleSheet" href = "../estilos.css" type = "text/css">
         <title>Creación mazo</title>
     </head>
     <body>
