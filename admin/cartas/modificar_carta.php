@@ -51,7 +51,7 @@
         ID: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="number" name="id_carta"
             placeholder="ID de la carta" /><br><br>
         Año: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="number" name="fecha" placeholder="Nuevo año" /><br><br>
-        Imágen: <input	type="file" name="imagen"/><br><br>
+        Imágen: <input	type="file" name="input_imagen"/><br><br>
         Mazo:&nbsp;&nbsp;&nbsp;&nbsp;<select name="mazo">
             <?php
             for ($i = 0; $i < count($listaMazosBruto); $i++) {
@@ -65,7 +65,7 @@
         <input type="hidden" name="accion" value="modificar" />
         <input type="hidden" name="pagina" value="modificar" />
     </form>
-    <table>
+    <table class="tabla_cartas">
         <tr>
             <th>ID</<th>
             <th>AÑO</th>

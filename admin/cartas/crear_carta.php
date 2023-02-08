@@ -15,7 +15,7 @@
     </head>
     <body>
         <h1>Creación de carta</h1><br>
-        <form action="carta_actualizada.php" method="post">
+        <form action="carta_actualizada.php" method="post" enctype="multipart/form-data">
             <textarea name="descripcion" rows="3" cols="24">Escribe aquí una brebe explicacion de tu carta.</textarea><br><br>
             Mazo: <select name="mazo">
             <?php

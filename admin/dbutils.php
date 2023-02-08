@@ -176,7 +176,7 @@ function insertarPuntuacion($conDb, $nombre, $puntos){
         $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
         $sql = "    INSERT INTO  puntuaciones  ( ID ,  NOMBRE ,  PUNTOS ) VALUES (NULL, '$nombre', '$puntos');";
         $db->exec($sql);
-        echo "<h1>Puntuacion añadida 👍</h1>";
+        // echo "<h1>Puntuacion añadida </h1>";
         }
     catch(PDOException $e)
         {

@@ -10,12 +10,21 @@
             if(isset($_POST["accion"])){
                 $accionRecuperada = $_POST["accion"];
 
+                if(isset($_POST["imagen"])){
+                    $tmp_name = $_FILES["imagen"]["tmp_name"];
+                    if($tmp_name != ""){
+                        $ruta = "../media/img/".basename($_FILES["imagen"]["name"]);
+                        move_uploaded_file($tmp_name, $ruta);
+                        //echo "Se ha subido correctamente";
+                    }
+                }
+
                 if($accionRecuperada == "crear"){
                     $descripcionRecuperada = $_POST["descripcion"];
                     $pagina = $_POST["pagina"];
                     $mazoRecuperado = strtoupper($_POST["mazo"]);
                     $fechaRecuperada = $_POST["anio"];
-                    $imagen = $_POST["imagen"];
+                    $imagen = $_FILES["imagen"]["name"];
 
                     if($fechaRecuperada!= "" && $mazoRecuperado!= "" && $imagen!= ""){
                             insertarCarta($myconection, $descripcionRecuperada, $fechaRecuperada, $mazoRecuperado, $imagen);
@@ -36,7 +45,9 @@
                     $descripcionRecuperada = $_POST["descripcion"];
                     $pagina = $_POST["pagina"];
                     $fechaRecuperada = $_POST["fecha"];
-                    $imagen = $_POST["imagen"];
+                    if (isset($_POST["imagen"])) {
+                        $imagen = $_FILES["imagen"]["name"];
+                    }
 
                     $listaCartasBruto = seleccionarCartas($myconection);
                     $listaID = array();

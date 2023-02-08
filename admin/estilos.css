@@ -63,16 +63,23 @@ a{
   color: #fff;
 }
 
-table{
+.tabla_puntuacion{
   border: 1px solid black;
   text-align: center;
   width: 40%;
   font-size: 150%;
+  border-radius: 2px;
 }
 
-tr, td{
+.tabla_puntuacion tr, td{
   border: 1px solid black;
   font-size: 120%;
+}
+
+.tabla_cartas{
+  border: 1px solid black;
+  text-align: center;
+  width: 40%;
 }
 
 .nombre_input{
