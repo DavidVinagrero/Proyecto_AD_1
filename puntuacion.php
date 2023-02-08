@@ -19,7 +19,9 @@
         ?>
         <style>
             table{
-                font-family:"PressStart";
+                /* font-family:"PressStart"; */
+                /* font-family:"VT323"; */
+                font-family:"Silkscreen";
             }
         </style>
     </head>
